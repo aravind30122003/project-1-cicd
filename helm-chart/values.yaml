@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: aravind30122003/test-commerce  # Replace with your actual DockerHub image name
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi
