@@ -6,6 +6,8 @@ pipeline {
         DOCKERHUB_USERNAME = "aravind310730"
         RELEASE_NAME = "my-app"
         CHART_PATH = "./helm-chart"
+        // Add KUBECONFIG if needed
+        // KUBECONFIG = '/path/to/kubeconfig'
     }
 
     stages {
@@ -17,9 +19,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest ."
-                }
+                sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest ."
             }
         }
 
@@ -44,22 +44,22 @@ pipeline {
             }
         }
 
+        // Add the kubectl check stage here, same indentation as others
+        stage('Kubectl Check') {
+            steps {
+                sh 'kubectl cluster-info'
+                sh 'kubectl get nodes'
+            }
+        }
+
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    sh """
-                    helm upgrade --install $RELEASE_NAME $CHART_PATH --set image.tag=latest
-                    """
-                }
+                sh """
+                helm upgrade --install $RELEASE_NAME $CHART_PATH --set image.tag=latest
+                """
             }
         }
     }
-        stage('Kubectl Check') {
-           steps {
-             sh 'kubectl cluster-info'
-             sh 'kubectl get nodes'
-    }
-}
 
     post {
         always {
