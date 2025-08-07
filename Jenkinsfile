@@ -54,6 +54,12 @@ pipeline {
             }
         }
     }
+        stage('Kubectl Check') {
+           steps {
+             sh 'kubectl cluster-info'
+             sh 'kubectl get nodes'
+    }
+}
 
     post {
         always {
