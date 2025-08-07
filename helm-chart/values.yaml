@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: aravind30122003/test-commerce  # Replace with your actual DockerHub image name
+  repository: aravind310730/ci-cd-node-image # Replace with your actual DockerHub image name
   tag: latest
   pullPolicy: IfNotPresent
 
