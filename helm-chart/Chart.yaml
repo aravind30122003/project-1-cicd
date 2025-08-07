@@ -1,7 +1,6 @@
 apiVersion: v2
-name: test-commerce
-description: A simple Node.js app for DevOps CI/CD with Helm and GitOps
+name: project-1-cicd
+description: A simple Node.js app for DevOps CI/CD with Helm
 type: application
 version: 0.1.0
-appVersion: "1.0.0"
-icon: https://raw.githubusercontent.com/aravind30122003/assets/main/nodejs-icon.png  # optional, for visual display in tools like Argo CD
+appVersion: "1.0"
