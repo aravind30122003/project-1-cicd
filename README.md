@@ -1,1 +1,1 @@
-Complete CI/CD project using >>>> 
+Complete CI/CD project 
