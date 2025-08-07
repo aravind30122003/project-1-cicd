@@ -4,10 +4,6 @@ pipeline {
     environment {
         IMAGE_NAME = "ci-cd-node-image"
         DOCKERHUB_USERNAME = "aravind310730"
-        RELEASE_NAME = "my-app"
-        CHART_PATH = "./helm-chart"
-        // Add KUBECONFIG if needed
-        // KUBECONFIG = '/path/to/kubeconfig'
     }
 
     stages {
@@ -43,13 +39,13 @@ pipeline {
                 }
             }
         }
-
+    }  // <-- close stages
 
     post {
         always {
             echo 'Cleaning up workspace...'
             cleanWs()
         }
-    }
-}
+    }  // <-- close post
+}  // <-- close pipeline
 
