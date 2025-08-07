@@ -4,6 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME = "ci-cd-node-image"
         DOCKERHUB_USERNAME = "aravind310730"
+        RELEASE_NAME = "my-app"
+        CHART_PATH = "./helm-chart"
     }
 
     stages {
@@ -41,6 +43,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh """
+                    helm upgrade --install $RELEASE_NAME $CHART_PATH --set image.tag=latest
+                    """
+                }
+            }
+        }
     }
 
     post {
@@ -50,3 +62,4 @@ pipeline {
         }
     }
 }
+
