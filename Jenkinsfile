@@ -44,22 +44,6 @@ pipeline {
             }
         }
 
-        // Add the kubectl check stage here, same indentation as others
-        stage('Kubectl Check') {
-            steps {
-                sh 'kubectl cluster-info'
-                sh 'kubectl get nodes'
-            }
-        }
-
-        stage('Deploy to Kubernetes') {
-            steps {
-                sh """
-                helm upgrade --install $RELEASE_NAME $CHART_PATH --set image.tag=latest
-                """
-            }
-        }
-    }
 
     post {
         always {
